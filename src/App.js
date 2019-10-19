@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './components/todo-list/todo-list';
+import SearchPanel from './components/search-panel/search-panel';
 
-function App() {
+const todoData = [
+  {label: 'to do lessons', important: true, id: 1},
+  {label: 'to do sport', important: false, id: 2},
+  {label: 'to find new job', important: false, id: 3}
+]
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SearchPanel/>
+      <TodoList todos={todoData}/>
     </div>
   );
 }
