@@ -19,14 +19,19 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const TodoList = ({todos, onDeleted}) => {
+const TodoList = ({todos, onDeleted, onToggleDone, onToggleImportant}) => {
     const classes = useStyles();
     const elements = todos.map(item => {
         const {id, ...itemProps} = item;
 
         return (
         <ListItem key={id}>
-            <TodoListItem {...itemProps} onDeleted={()=>onDeleted(id)}/>
+            <TodoListItem
+                { ...itemProps }
+                onDeleted={()=>onDeleted(id)}
+                onToggleDone={()=>onToggleDone(id)}
+                onToggleImportant={()=>onToggleImportant(id)}
+                />
             {/* <ListItemSecondaryAction>
                 <IconButton edge="end">
                     <DeleteForeverIcon style={{color: "red"}}/>

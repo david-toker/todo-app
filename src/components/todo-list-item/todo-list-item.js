@@ -8,33 +8,10 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 
 class TodoListItem extends React.Component {
-    constructor(props){
-        super(props);
-        this.state={
-            done: false,
-            important: false
-        }
-    }
-    onLabelClick = () => {
-        console.log(`Done ${this.props.label}`);
-        this.setState((state) => {
-            return {
-                done: !state.done
-            };
-        });
-    }
 
-    onMarkImportant = () => {
-        this.setState((state) => {
-            return {
-                important: !state.important
-            }
-        })
-    }
 
     render() {
-        const {label} = this.props;
-        const {done, important} = this.state;
+        const {label, done, important} = this.props;
         const spanStyle = {
             // color: important ? 'tomato' : 'black',
             cursor: 'pointer'
@@ -52,14 +29,17 @@ class TodoListItem extends React.Component {
         <span
             className={classNames}
             style={spanStyle}
-            onClick={this.onLabelClick}>
+            onClick={this.props.onToggleDone}>
             {label}
         </span>
         <ListItemSecondaryAction>
             <IconButton edge="end" onClick={this.props.onDeleted}>
-                <DeleteForeverIcon style={{color: "red"}}/>
+                <DeleteForeverIcon style={{color: "red"}}
+                />
             </IconButton>
-            <IconButton edge="end" onClick={this.onMarkImportant}>
+            <IconButton edge="end"
+            onClick={this.props.onToggleImportant}
+            >
                 <PriorityHighIcon style={{color: "green"}}/>
             </IconButton>
         </ListItemSecondaryAction>
