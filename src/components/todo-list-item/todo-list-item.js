@@ -13,7 +13,6 @@ class TodoListItem extends React.Component {
     render() {
         const {label, done, important} = this.props;
         const spanStyle = {
-            // color: important ? 'tomato' : 'black',
             cursor: 'pointer'
         };
         let classNames = 'todo-list-item';
@@ -48,16 +47,5 @@ class TodoListItem extends React.Component {
     }
 }
 
-
-// const TodoListItemFunc = ({label, important=false}) => {
-//     const spanStyle = {
-//         color: important ? 'tomato' : 'black'
-//     };
-//     return (
-//         <span style={spanStyle}>
-//             {label}
-//         </span>
-//     );
-// };
 
 export default TodoListItem;

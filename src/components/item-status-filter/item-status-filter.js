@@ -1,30 +1,33 @@
-import React from 'react';
-// import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
+import React, {Component} from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-const ItemStatusFilter = () => {
-    return (
-        <div>
+class ItemStatusFilter extends Component {
+    buttons = [
+        {name: 'all', label: 'All'},
+        {name: 'active', label: 'Active'},
+        {name: 'done', label: 'Done'},
+    ]
+
+    render() {
+        const {filter, onFilterChange} = this.props;
+        const buttons = this.buttons.map(({name, label})=>{
+            const isActive = filter === name;
+            return (
+            <ToggleButton selected={isActive} value={name} key={name} onClick={()=>onFilterChange(name)}>
+            {label}
+            </ToggleButton>
+            )
+        })
+        return (
+            <div>
             <ToggleButtonGroup size="medium">
-            <ToggleButton selected={true}  value="all">
-            All
-            </ToggleButton>
-            <ToggleButton  value="active">
-            Active
-            </ToggleButton>
-            <ToggleButton  value="done">
-            Done
-            </ToggleButton>
-            </ToggleButtonGroup>
-            {/* <ButtonGroup color="primary" aria-label="outlined primary button group">
-              <Button>All</Button>
-              <Button>Active</Button>
-              <Button>Done</Button>
-            </ButtonGroup> */}
-        </div>
-    );
-};
+            {buttons}
+            </ToggleButtonGroup> 
+            </div>
+        )
+    }
+}
+
 
 export default ItemStatusFilter;
